@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import { Rule } from "antd/es/form";
 
 const BASE_URL = 'https://todos-api-dm5a.onrender.com/todo/';
 
@@ -9,6 +10,7 @@ interface Todo {
   priority: 'high' | 'medium' | 'low';
   finished: boolean;
   date: Date;
+  rules: Rule[];
 }
 
 export const getTodos = async (): Promise<Todo[]> => {

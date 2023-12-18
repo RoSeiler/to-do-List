@@ -24,7 +24,3 @@ const TodoHeader: React.FC<Props> = (props) => {
 };
 
 export default TodoHeader;
-/*
-para crear una cuadrícula flexible dentro del header, en caso de agregar más elementos o alinearlos de forma diferente
-podemos usar el componente Row y Col de Ant Design 
-*/

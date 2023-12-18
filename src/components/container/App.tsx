@@ -1,10 +1,22 @@
+//Contenedor principal --  Incluye el header, el  FormEditCommon para gestionar tareas y List para mostrar la lista de tareas. Mantiene el estado de las tareas y la tarea que se está editando.
 import TodoHeader from "../../pages/Header";
-import List from '../List';
-import FormEdit from './FormEdit';
+import List from '../view/List';
 import { useState } from 'react';
-import { Values } from './FormEdit';
 import { Layout } from 'antd';
+import FormEdit from "./FormEdit";
+import { Rule } from "antd/es/form";
 const { Content } = Layout;
+
+export type Values = {
+  id: number;
+  title: string;
+  description: string;
+  priority: 'high' | 'medium' | 'low';
+  finished: boolean;
+  date: Date;
+  rules: Rule[];
+}; 
+
 
 function App() {
   const [tasks, setTasks] = useState<Values[]>([]);

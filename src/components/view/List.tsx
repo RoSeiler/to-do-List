@@ -1,7 +1,9 @@
+//Muestra la lista de tareas. Recibe datos de tareas como props y recorre los datos para renderizar la info y botones, etc
 import React from 'react';
 import { Rule } from 'antd/es/form';
-import { Values } from './container/FormEdit';
+import { Values } from '../container/App';
 import { Button } from 'antd';
+
 
 interface ListProps {
   data: {
