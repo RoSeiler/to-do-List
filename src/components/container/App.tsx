@@ -1,14 +1,29 @@
 import TodoHeader from "../../pages/Header";
 import List from '../List';
 import FormEdit from './FormEdit';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Values } from './FormEdit';
 import { Layout } from 'antd';
+import { addTodo, getTodos } from "../../api/todoapi";
 const { Content } = Layout;
 
 function App() {
-  const [tasks, setTasks] = useState<Values[]>([]);
   const [editingTask, setEditingTask] = useState<Values | null>(null);
+
+  // TODO: Este useEffect seria bueno transformarlo en un hook
+  const [tasks, setTasks] = useState<Values[]>([]);
+
+  React.useEffect(() => {
+    const caller = async () => {
+      const data = await getTodos()
+
+      setTasks(data)
+
+    }
+
+    caller()
+  }, [])
+  // Hasta Aca
 
   const handleAdd = (newTask: Values) => {
     setTasks([...tasks, { ...newTask, id: tasks.length }]);

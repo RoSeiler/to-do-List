@@ -17,7 +17,11 @@ interface ListProps {
   onDelete: (taskId: number) => void;
 }
 
+// TODO: Mostrar el listado segun los datos que traemos del backend
+
 const List: React.FC<ListProps> = ({ data, onEditClick, onDelete }) => {
+
+  // FIXME: Esto falla porque los datos no tiene la forma esperada por los types
   return (
     <div>
       <h2>List of Items:</h2>
@@ -28,7 +32,7 @@ const List: React.FC<ListProps> = ({ data, onEditClick, onDelete }) => {
             Description: {item.description}, 
             Priority: {item.priority}, 
             Finished: {item.finished ? 'Yes' : 'No'}, 
-            Date: {item.date.toLocaleString()}
+            Date: {item.date?.toLocaleString()}
             <Button style={{ margin: '0.5rem' }} type="primary" onClick={() => onEditClick(item)} >Edit</Button>
             <Button  type="default" onClick={() => onDelete(item.id)}>Delete</Button>
           </li>
