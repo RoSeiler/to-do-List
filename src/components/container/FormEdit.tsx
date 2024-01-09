@@ -1,19 +1,20 @@
 import React from 'react';
+import { Rule } from 'antd/es/form';
 import { Form, Button, Select, Checkbox, DatePicker, Input } from 'antd';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import useForm from 'antd/es/form/hooks/useForm';
-//import { Rule } from 'rc-field-form/lib/interface';
+
 import { addTodo, updateTodo, deleteTodo } from '../../api/todoapi';
 
 
 export type Values = {
-  id: number;
-  title: string;
-  description: string;
-  priority: 'high' | 'medium' | 'low';
-  finished: boolean;
-  date: Date;
-  //rules: Rule[];
+  id?: number;
+  titulo: string;
+  descripcion: string;
+  fecha_finalizacion: Date ;
+  prioridad: 'Alta' | 'Media' | 'Baja';
+  completada: boolean;
+  rules: Rule[]; //❔FIXME Este rules aca tmb es neecsario? pasa algo si esta solo en Todo?
 };
 
 export type FormProps = {
@@ -55,7 +56,7 @@ const FormEdit: React.FC<FormProps> = ({ onAdd, onEdit, onDelete, editingTask })
   };
 
   const handleDelete = async () => {
-    if (editingTask) {
+    if (editingTask && editingTask.id !== undefined) {
       try {
         await deleteTodo(editingTask.id);
         onDelete(editingTask.id);
@@ -64,6 +65,7 @@ const FormEdit: React.FC<FormProps> = ({ onAdd, onEdit, onDelete, editingTask })
       }
     }
   };
+  
 
   const onReset = () => {
     form.resetFields();
