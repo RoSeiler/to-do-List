@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { Rule } from 'antd/es/form';
+import { TodoApi, TodoApiAdd, TodoList } from './types';
+
 
 const BASE_URL = 'https://todos-api-dm5a.onrender.com/todo/';
 
@@ -14,8 +16,8 @@ export interface Todo { //FIXME ❔ Puedo usar Values y borrar Todo si son pract
  
   
 }
-export const getTodos = async (): Promise<Todo[]> => {
-  const response: AxiosResponse<Todo[]> = await axios.get(BASE_URL);
+export const getTodos = async (): Promise<TodoList> => {
+  const response: AxiosResponse<TodoList> = await axios.get(BASE_URL);
   return response.data;
 }; 
 /*
@@ -30,9 +32,9 @@ export const updateTodo = async (updatedTodo: Todo): Promise<Todo> => {
 };
 
 */
-export const addTodo = async (newTodo: Todo): Promise<Todo> => {
+export const addTodo = async (newTodo: TodoApiAdd): Promise<TodoApi> => {
   try {
-    const response: AxiosResponse<Todo> = await axios.post('https://todos-api-dm5a.onrender.com/todo/alta', newTodo);  
+    const response: AxiosResponse<TodoApi> = await axios.post('https://todos-api-dm5a.onrender.com/todo/alta', newTodo);  
     console.log('addTodo Response:', response.data);
     return response.data;
   } catch (error) {
@@ -44,11 +46,12 @@ export const addTodo = async (newTodo: Todo): Promise<Todo> => {
 
 // TODO: Chequear que funcione updateTodo
 
-export const updateTodo = async (updatedTodo: Todo): Promise<Todo> => {    
-  const apiUrl = `https://todos-api-dm5a.onrender.com/todo/${updatedTodo.id}`;//FIXME ❔:PUT https://todos-api-dm5a.onrender.com/todo/undefined 
+export const updateTodo = async (updatedTodoParam: Todo): Promise<Todo> => {    
+  console.log(updatedTodoParam);
+  const apiUrl = `https://todos-api-dm5a.onrender.com/todo/${updatedTodoParam.id}`;//FIXME ❔:PUT https://todos-api-dm5a.onrender.com/todo/undefined 
 
   try{
-    const response: AxiosResponse<Todo> = await axios.put(apiUrl, updatedTodo);
+    const response: AxiosResponse<Todo> = await axios.put(apiUrl, updatedTodoParam);
     console.log('updateTodo Response:', response.data);
     return response.data;
   } catch (error) {
