@@ -1,19 +1,26 @@
-import { TodoList } from "../../api/types"
+import { TodoList } from "../../api/types";
+import { Button } from "antd";
 
-interface ListViewProps{
-
-    list: TodoList
+interface ListViewProps {
+  list: TodoList;
+  deleteTodo: (todoId: number) => void;
 }
 
-const ListView =(props: ListViewProps) =>{
-console.log(props);
+const ListView = (props: ListViewProps) => {
+  return (
+    <ul>
+      {props.list.map((todo) => (
+        <li key={todo.id}>
+          {todo.titulo}
+          <Button onClick={() => props.deleteTodo(todo.id)}>Delete</Button>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-    return(
-        <ul>
-            {props.list.map(t=><li>{t.titulo}</li>)}
-        </ul>
-       
+export default ListView;
 
-    )
-}
-export default ListView
+
+//agregar una funcion q me permita borrar todos - obtengo la fn y se la paso a la vista
+//en la interefaz de listviewprops agregar un tipo (deletetodo) el boton tiene q ejecutar la fn (prop onDeleteTodo)

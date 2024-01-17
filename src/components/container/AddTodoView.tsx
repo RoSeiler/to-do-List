@@ -1,12 +1,10 @@
-//aca va la vista del formulario - todo aca ahora!!
-//cuando quiera grabar que se llame a algo similar al onClick - termina llamando onFinish
+//
 
 import { TodoApiAdd } from "../../api/types";
 import { Form, Button, Select, Checkbox, DatePicker, Input } from 'antd';
 import { useForm } from 'antd/lib/form/Form'; 
 
 interface AddTodoProps {
-    xxx: number,
     onSave: (todo: TodoApiAdd) => Promise<void>
 }
 

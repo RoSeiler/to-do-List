@@ -11,7 +11,7 @@ const AddTodoContainer = () =>{
          addTodo(todo);
     }
     return(
-        <AddTodoView xxx={8} onSave={saveTodo}/> 
+        <AddTodoView onSave={saveTodo}/> 
     )
 }
 

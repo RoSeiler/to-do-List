@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TodoList } from "../../api/types";
 import ListView from "./ListView"
 import React from "react";
-import { getTodos } from "../../api/todoapi";
+import { getTodos, deleteTodo } from "../../api/todoapi";
 
 const ListContainer =() =>{
 
@@ -22,11 +22,12 @@ const ListContainer =() =>{
   }, []); 
   console.log(todos);
 
-
     return(
-       <ListView list={todos} />
+       <ListView list={todos} deleteTodo={deleteTodo} />
 
     )
 }
 
 export default ListContainer
+
+//definir una fn DeleteTodo y pasarla como prop a ListView
