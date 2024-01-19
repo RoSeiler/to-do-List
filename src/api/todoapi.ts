@@ -3,7 +3,8 @@ import { Rule } from 'antd/es/form';
 import { TodoApi, TodoApiAdd, TodoList } from './types';
 
 
-const BASE_URL = 'https://todos-api-dm5a.onrender.com/todo/';
+const BASE_URL = 'https://todos-api-dm5a.onrender.com/todo';
+
 
 export interface Todo { //FIXME ❔ Puedo usar Values y borrar Todo si son practicamente lo mismo? y que diferencia hay con ListProps
   id?: number; //FIXME dejo el id optativo?
@@ -62,10 +63,11 @@ export const updateTodo = async (updatedTodoParam: Todo): Promise<Todo> => {
 };
 
 // TODO: Chequear que funcione deleteTodo
+
 export const deleteTodo = async (taskId: number): Promise<Todo> => {
 
   try{
-    const response: AxiosResponse<Todo> = await axios.delete(`${BASE_URL}/${taskId}`);//FIXME Revisar parametro si esta ok escrito
+    const response: AxiosResponse<Todo> = await axios.delete(`${BASE_URL}/${taskId}`);
     console.log('deleTodo Response:', response.data);
     return response.data;
   }
